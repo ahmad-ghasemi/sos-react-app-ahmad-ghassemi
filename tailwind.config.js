@@ -3,11 +3,11 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/**/**/**/*.{js,ts,jsx,tsx}",
     "./pages/**/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/**/**/*.{js,ts,jsx,tsx}",
     "./src/components/profile/ui/*.{js,ts,jsx,tsx}",
-    "./src/layouts/**/*.{js,ts,jsx,tsx}",
+    "./src/ui/layout/header/*.{js,ts,jsx,tsx}",
     "./src/lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -25,7 +25,8 @@ module.exports = {
     screens: {
       xs: '490px',
       sm: '480px',
-      lg1: '1025px',
+      lg:'984px',
+      lggg: '1025px',
       '2xl': '1500px',
       '3xl': '1780px',
       ...defaultTheme.screens,

@@ -3,9 +3,14 @@ import App from "next/app";
 import { Provider } from "mobx-react";
 import initializeStore from "../src/data/base/CoreStore";
 import { DefaultSeo } from "next-seo";
-
+import '/styles/globals.css'
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { CacheProvider } from '@emotion/react';
+import theme from '../src/theme';
+import createEmotionCache from '../src/createEmotionCache';
 const Noop = ({ children }) => <>{children}</>;
-
+const clientSideEmotionCache = createEmotionCache();
 class MyApp extends App {
   static async getInitialProps(appContext) {
     const { Component, ctx } = appContext;
@@ -40,11 +45,13 @@ class MyApp extends App {
 
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, emotionCache =
+        clientSideEmotionCache, pageProps } = this.props;
     const Layout = Component.Layout || Noop;
 
     return (
         <Provider CoreStore={this.mobxStore}>
+            <CacheProvider value={emotionCache}>
             <DefaultSeo
                 title={"moverii"}
                 openGraph={{
@@ -59,9 +66,18 @@ class MyApp extends App {
                   cardType: "summary_large_image",
                 }}
             />
+            <ThemeProvider theme={theme}>
+
+                {/* CssBaseline kickstart an elegant,
+                consistent, and simple baseline to
+                build upon. */}
+
+                <CssBaseline />
             <Layout {...pageProps}>
               <Component {...pageProps} />
             </Layout>
+            </ThemeProvider>
+            </CacheProvider>
         </Provider>
     );
   }
