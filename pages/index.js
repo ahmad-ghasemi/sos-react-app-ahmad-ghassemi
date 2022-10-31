@@ -2,69 +2,13 @@ import Head from 'next/head'
 import BaseLayout from "../src/ui/layout/base-layout";
 import Button from '@mui/material/Button';
 import ArticleCard from "../src/components/cards/articleCard";
- function Home() {
-     const sampleData= [
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-         {
-             title:'راهنمای دریافت معرفی‌نامه',
-             date:'2022/10/31',
-             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و...',
-             image:'/static/articles/arctic-fox.webp'
-         },
-     ]
+import {useState} from "react";
+import {observer} from "mobx-react";
+import HomeController from "../src/data/controller/homeController/homeController";
+const controller = new HomeController()
+ const Home = (observer((props) => {
+     const [showMore , setShowMore] = useState(false)
+
   return (
     <div className={'container'}>
       <Head>
@@ -73,14 +17,17 @@ import ArticleCard from "../src/components/cards/articleCard";
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={'container mx-auto'}>
-          <div className={'flex justify-between items-center my-3 flex-row-reverse'}>
-              <h1 className={'text-base font-medium'}>مقاله ها</h1>
-              <Button className={'font-semibold'}>نمایش همه</Button>
+          <div className={'flex justify-between items-center mt-6 mb-3 flex-row-reverse'}>
+              <h1 className={'text-xl font-semibold'}>مقاله ها</h1>
+              {
+                  !showMore && <Button onClick={()=>setShowMore(true)} className={'font-semibold'}>نمایش همه</Button>
+              }
+
           </div>
            <div className={'flex md:flex-row flex-col flex-row-reverse flex-wrap justify-center md:justify-end'}>
                {
-                   sampleData.map((item , index) => {
-                       if(index<4) {
+                   controller.List.map((item , index) => {
+                       if(index<4 || showMore) {
                            return <ArticleCard item={item} key={item.title + index}/>
                        }
                    })
@@ -89,7 +36,7 @@ import ArticleCard from "../src/components/cards/articleCard";
       </div>
     </div>
   )
-}
+}))
 Home.Layout = BaseLayout
 // export const getStaticProps = async ({ locale }) => {
 //     // if (process.env.NODE_ENV === 'development') {

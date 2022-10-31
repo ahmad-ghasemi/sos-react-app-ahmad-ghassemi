@@ -8,8 +8,8 @@ module.exports = withNextEnv({
   async rewrites() {
     return [
       {
-        source: "/search/category:param1?/destination:param2?",
-        destination: "/content/protection/terms",
+        source: "/article/:id",
+        destination: "/article",
       },
 
     ];

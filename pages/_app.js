@@ -53,12 +53,12 @@ class MyApp extends App {
         <Provider CoreStore={this.mobxStore} dir="rtl">
             <CacheProvider value={emotionCache}>
             <DefaultSeo
-                title={"moverii"}
+                title={"ُکمک رسان ایران"}
                 openGraph={{
                   type: "website",
-                  locale: "en_IE",
-                  url: "https://www.moverii.de/",
-                  site_name: "mvoerii",
+                  locale: "fa_IE",
+                  url: "https://www.ıranassıstance.com/",
+                  site_name: "iran sos",
                 }}
                 twitter={{
                   handle: "@handle",
@@ -73,7 +73,7 @@ class MyApp extends App {
                 build upon. */}
 
                 <CssBaseline />
-            <Layout {...pageProps}>
+            <Layout {...pageProps} >
               <Component {...pageProps} />
             </Layout>
             </ThemeProvider>

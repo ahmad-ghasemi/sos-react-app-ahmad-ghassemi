@@ -6,9 +6,9 @@ import Footer from "../layout/footer/footer";
 const BaseLayout = inject("CoreStore")(observer(({children}) => {
 
     return (
-        <div>
+        <div >
             <Header/>
-            <div>{children}</div>
+            <div className={'container'}>{children}</div>
             <Footer/>
         </div>
     )
