@@ -77,7 +77,7 @@ import ArticleCard from "../src/components/cards/articleCard";
               <h1 className={'text-base font-medium'}>مقاله ها</h1>
               <Button className={'font-semibold'}>نمایش همه</Button>
           </div>
-           <div className={'flex md:flex-row flex-col md:space-x-4 space-y-4'}>
+           <div className={'flex md:flex-row flex-col flex-row-reverse flex-wrap justify-center md:justify-end'}>
                {
                    sampleData.map((item , index) => {
                        if(index<4) {

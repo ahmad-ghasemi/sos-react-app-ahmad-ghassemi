@@ -14,19 +14,19 @@ module.exports = {
     container: {
       center: true,
       padding: "1rem",
-      screens: {
-        sm: "600px",
-        md: "728px",
-        lg: "984px",
-        xl: "1240px",
-        "2xl": "1240px",
-      },
+      // screens: {
+      //   sm: "600px",
+      //   md: "728px",
+      //   lg: "984px",
+      //   xl: "1240px",
+      //   "2xl": "1240px",
+      // },
     },
     screens: {
       xs: '490px',
       sm: '480px',
-      lg:'984px',
-      lggg: '1025px',
+      md:'600px',
+      lg1: '1025px',
       '2xl': '1500px',
       '3xl': '1780px',
       ...defaultTheme.screens,

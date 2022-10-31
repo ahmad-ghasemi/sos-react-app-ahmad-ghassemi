@@ -3,7 +3,7 @@ import {Button} from "@mui/material";
 const ArticleCard = (props)=>{
     const {item} = props
     return(
-        <div className={'border border-[#0F5098] rounded-3xl  max-w-[348px] '}>
+        <div className={'border border-[#0F5098] rounded-3xl max-w-[328px]  lg:max-w-[348px] m-2'}>
             <div className={'flex justify-center items-center rounded-3xl p-4'}>
                 <img className={'rounded-3xl overflow-hidden object-cover object-center'} src={item.image} alt={item.title}/>
             </div>
