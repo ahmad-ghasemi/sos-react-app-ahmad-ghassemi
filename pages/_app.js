@@ -50,7 +50,7 @@ class MyApp extends App {
     const Layout = Component.Layout || Noop;
 
     return (
-        <Provider CoreStore={this.mobxStore}>
+        <Provider CoreStore={this.mobxStore} dir="rtl">
             <CacheProvider value={emotionCache}>
             <DefaultSeo
                 title={"moverii"}

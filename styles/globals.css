@@ -7,7 +7,12 @@
   font-weight: normal;
   font-style: italic;
 }
-html,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: 'iranSans' !important;
+  box-sizing: border-box;
+}
 body {
   padding: 0;
   margin: 0;

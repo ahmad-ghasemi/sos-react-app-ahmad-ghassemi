@@ -7,7 +7,7 @@ const Header = inject('CoreStore')(
         const { CoreStore } = props
         return (
             <header>
-                <nav className=" bg-white md:min-h-[72px] px-2 sm:px-4 py-2.5  shadow-[0_8px_8px_8px_rgba(18,18,18,0.2)] mix-blend-normal">
+                <nav className=" bg-white md:min-h-[72px] px-2 sm:px-4 py-2.5  shadow-[0_4px_4px_4px_rgba(18,18,18,0.2)] mix-blend-normal">
                     <ul className={'hidden lg:block'}>
                     <div className="container text-[#1158A7] text-sm font-normal flex-row-reverse flex flex-wrap px-4 justify-between items-center mx-auto ">
                         {/** logo **/}
