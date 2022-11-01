@@ -8,6 +8,6 @@ export default class TodoModel {
     title = ''
     id = ''
     userId = ''
-    completed =''
+    completed =false
 
 }

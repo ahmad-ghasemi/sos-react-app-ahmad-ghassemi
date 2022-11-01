@@ -49,4 +49,45 @@ export default class BlogController {
         }
     }
 
+    create = async (value , callback) => {
+        this.loading = true;
+        try {
+            const response = await TodoService.create({title:value});
+            console.log(response)
+                const cmodel = new TodoModel();
+                set(cmodel, response);
+                this.limitPosts.push(cmodel)
+                // this.limitPosts[this.limitPosts.length + 1] = cmodel
+            console.log(this.limitPosts)
+            callback()
+            this.loading = false;
+        } catch (e) {
+            this.loading = false;
+        }
+    }
+    update = async ( item , index) => {
+        this.loading = true;
+        let status = !this.limitPosts[index].completed
+        try {
+            const response = await TodoService.update({completed: status} , item.id);
+            console.log(response)
+            this.limitPosts[index].completed =  !this.limitPosts[index].completed
+            this.loading = false;
+        } catch (e) {
+            this.loading = false;
+        }
+    }
+    delete = async ( item , index) => {
+        console.log('controller')
+        this.loading = true;
+        try {
+            console.log('controller 1')
+            const response = await TodoService.deleted(item.id);
+          delete  this.limitPosts[index]
+            this.loading = false;
+        } catch (e) {
+            this.loading = false;
+        }
+    }
+
 }
