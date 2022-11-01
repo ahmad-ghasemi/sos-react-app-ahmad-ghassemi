@@ -1,12 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { inject, observer } from 'mobx-react'
-import {Button} from "@mui/material";
+import {Button, Divider, Drawer} from "@mui/material";
 const Header = inject('CoreStore')(
     observer((props) => {
         const { CoreStore } = props
+        const [showMenu , setShowMenu] = useState(false)
         return (
             <header>
+                <Drawer
+                    anchor={'right'}
+                    open={showMenu}
+                    onClose={()=>setShowMenu(false)}
+                >
+                    <ul className={'px-4 pt-8 w-full flex justify-end items-center flex-col'}>
+                        <Link href={'/'}>
+                            <li className={'py-3'}>صفحه اصلی</li>
+                            <Divider/>
+                        </Link>
+
+                        <Link href={'/todo'}>
+                            <li className={'py-3'}>{'todo list'}</li>
+                            <Divider/>
+                        </Link>
+
+                        <Link href={'/'}>
+                            <li className={'py-3'}>مراکز خدمات درمانی</li>
+                            <Divider/>
+                        </Link>
+
+                        <Link href={'/'}>
+                            <li className={'py-3'}>شعبه‌های ما</li>
+                            <Divider/>
+                        </Link>
+
+                        <Link href={'/'}>
+                            <li className={'py-3'}>سوال‌‌های متداول</li>
+                        </Link>
+                    </ul>
+                </Drawer>
                 <nav className=" bg-white md:min-h-[72px] px-2 sm:px-4 py-2.5  shadow-[0_4px_4px_4px_rgba(18,18,18,0.2)] mix-blend-normal">
                     <ul className={'hidden lg:block'}>
                     <div className="container text-[#1158A7] text-sm font-normal flex-row-reverse flex flex-wrap px-4 justify-between items-center mx-auto ">
@@ -41,9 +73,9 @@ const Header = inject('CoreStore')(
                     <ul className={'block lg:hidden'}>
                         <div className="container text-[#1158A7] text-sm font-normal flex-row-reverse flex flex-wrap px-4 justify-between items-center mx-auto ">
                         <li>
-                            <Link href={'/'}>
-                                <img  src={'/static/icon/menu.svg'} alt={'ایران sos لوگو'}/>
-                            </Link>
+                                <Button onClick={()=>setShowMenu(true)}>
+                                    <img  src={'/static/icon/menu.svg'} alt={'menu'}/>
+                                </Button>
                         </li>
                         <li>
                         <Link href={'/'}>
