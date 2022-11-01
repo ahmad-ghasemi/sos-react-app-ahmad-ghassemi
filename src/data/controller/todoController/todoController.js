@@ -53,7 +53,6 @@ export default class BlogController {
         this.loading = true;
         try {
             const response = await TodoService.create({title:value});
-            console.log(response)
                 const cmodel = new TodoModel();
                 set(cmodel, response);
                 this.limitPosts.push(cmodel)
@@ -77,13 +76,23 @@ export default class BlogController {
             this.loading = false;
         }
     }
-    delete = async ( item , index) => {
-        console.log('controller')
+    updateItem = async ( value , id , index , callback) => {
+        this.loading = true;
+        try {
+            const response = await TodoService.update({title: value} , id);
+            this.limitPosts[index].title =  value
+            this.loading = false;
+            callback()
+        } catch (e) {
+            this.loading = false;
+        }
+    }
+    deleteted = async ( item , index) => {
         this.loading = true;
         try {
             console.log('controller 1')
             const response = await TodoService.deleted(item.id);
-          delete  this.limitPosts[index]
+                // delete  this.limitPosts[index]
             this.loading = false;
         } catch (e) {
             this.loading = false;

@@ -19,6 +19,7 @@ const controller = new todoController()
 const TodoList = (observer((props)=>{
     const [value , setValue] = useState('')
     const [dialog , setDialog] = useState(false)
+    const [status , setStatus] = useState(false)
     const [deletedValue , setItem] = useState({})
     useEffect(()=>{
         controller.getList()
@@ -31,18 +32,36 @@ const TodoList = (observer((props)=>{
     const sendCompleted = (  item , index) => {
         controller.update(item , index)
     }
+    const updateDate = () => {
+        let id = deletedValue.id
+        console.log(id)
+        let index = deletedValue.index
+        controller.updateItem( value,id , index , ()=> handleState() )
+    }
+    const handleState = () => {
+        setValue('')
+        setStatus(false)
+    }
     const deleteItem = () => {
-        console.log('deleted item')
         let data = deletedValue.item
         let index = deletedValue.index
-        controller.delete(data , index)
+        controller.deleteted(data , index)
     }
     const setDeletedItem = (item , index)=> {
         setItem({item : item , index: index})
         setDialog(true)
     }
-    const handleUpdate = (item)=>{
+
+    const handleUpdate = (item , index)=>{
+        setStatus(true)
         setValue(item.title)
+        setItem({id:item.id , index:index})
+        const Input = document.querySelector(
+            `input[name=targetInput]`
+        );
+        if (Input !== null) {
+            Input.focus();
+        }
     }
     return(
         <Box className={'  w-full my-6 mx-auto p-4 container relative'}>
@@ -78,7 +97,7 @@ const TodoList = (observer((props)=>{
                                     <div onClick={()=>setDeletedItem(item . index)} className={'cursor-pointer mr-2'}>
                                         <img src={'/static/icon/delete.svg'}/>
                                     </div>
-                                    <div onClick={()=>handleUpdate(item)} className={'cursor-pointer'}>
+                                    <div onClick={()=>handleUpdate(item , index)} className={'cursor-pointer'}>
                                         <img src={'/static/icon/edit.svg'}/>
                                     </div>
                                 </div>
@@ -91,11 +110,17 @@ const TodoList = (observer((props)=>{
                 {/*</div>*/}
 
                 <CardActions>
-                    <Input loading={controller.loading} className={'w-full'} placeholder={'please enter todo title'} value={value} onChange={(e)=>setValue(e.target.value)}/>
-
+                    <Input name={'targetInput'} loading={controller.loading} className={'w-full'} placeholder={'please enter todo title'} value={value} onChange={(e)=>setValue(e.target.value)}/>
+                    {
+                        status ?
+                            <div onClick={updateDate} className={'cursor-pointer'} >
+                                <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
+                            </div> :
                         <div onClick={sendData} className={'cursor-pointer'} >
-                            <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
+                        <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
                         </div>
+                    }
+
 
 
 

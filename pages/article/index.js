@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import BaseLayout from "../../src/ui/layout/base-layout";
 import HomeController from "../../src/data/controller/homeController/homeController";
 import Link from "next/link";
+import {NextSeo} from "next-seo";
 const controller = new HomeController()
 const ArticleView = (observer((props)=>{
     const router = useRouter()
@@ -12,6 +13,21 @@ const ArticleView = (observer((props)=>{
     },[router.query.id])
     return(
         <div className={'border border-[#0F5098] rounded-2xl w-full my-6 mx-auto p-4 container'}>
+            <NextSeo
+                title={controller.item.title}
+                description={controller.item.description}
+                openGraph={{
+                    url: "https://www.ıranassıstance.com/",
+                    title: `${controller.item.title}`,
+                    description: `${controller.item.description}`,
+                    site_name: "ıran assıstance",
+                }}
+                twitter={{
+                    handle: "@handle",
+                    site: "@site",
+                    cardType: "summary_large_image",
+                }}
+            />
             <Link href={'/'}>
                 <div className={'flex items-center justify-end mb-3'}>
                     <span className={'text-xl font-semibold text-[#0F5098] flex justify-end mr-4'}> بازگشت </span>
