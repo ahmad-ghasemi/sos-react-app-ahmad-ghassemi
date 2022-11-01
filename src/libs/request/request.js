@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getToken } from './get-token';
 
 const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT,
@@ -12,10 +11,9 @@ const request = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    const token = getToken();
     config.headers = {
       ...config.headers,
-      Authorization: `Bearer ${token ? token : ''}`,
+      Authorization: ``,
     };
     return config;
   },

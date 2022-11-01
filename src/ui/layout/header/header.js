@@ -19,7 +19,7 @@ const Header = inject('CoreStore')(
                             <Divider/>
                         </Link>
 
-                        <Link href={'/todo'}>
+                        <Link href={'/todo-list'}>
                             <li className={'py-3'}>{'todo list'}</li>
                             <Divider/>
                         </Link>
@@ -51,7 +51,7 @@ const Header = inject('CoreStore')(
                         <Link href={'/'}>
                             <li>صفحه اصلی</li>
                         </Link>
-                        <Link href={'/todo'}>
+                        <Link href={'/todo-list'}>
                             <li>{'todo list'}</li>
                         </Link>
                         <Link href={'/'}>

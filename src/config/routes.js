@@ -1,7 +1,5 @@
 export const Routes = {
-  home: '/',
-  blog: `/blog`,
-  tripfinder: `/tripfinder`,
+  todo_list: '',
   blogView: (alias) => `/blog/view/${encodeURIComponent(alias)}`,
 
 };
