@@ -18,9 +18,9 @@ const controller = new HomeController()
       </Head>
       <div className={'container mx-auto'}>
           <div className={'flex justify-between items-center mt-6 mb-3 flex-row-reverse'}>
-              <h1 className={'text-xl font-semibold'}>مقاله ها</h1>
+              <h1 className={'text-xl font-semibold'}> مقاله ها</h1>
               {
-                  !showMore && <Button onClick={()=>setShowMore(true)} className={'font-semibold'}>نمایش همه</Button>
+                  !showMore && <Button onClick={()=>setShowMore(true)} className={'font-semibold'}> <span className={'button-style-font'}>نمایش همه</span></Button>
               }
 
           </div>

@@ -13,6 +13,9 @@ html {
   font-family: 'iranSans' !important;
   box-sizing: border-box;
 }
+.button-style-font{
+  font-family: 'iranSans' !important;
+}
 body {
   padding: 0;
   margin: 0;

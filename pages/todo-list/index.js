@@ -93,10 +93,6 @@ const TodoList = (observer((props)=>{
                                 <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
                             </div>
                     }
-
-
-
-
                 </CardActions>
                 <CardContent>
                     {

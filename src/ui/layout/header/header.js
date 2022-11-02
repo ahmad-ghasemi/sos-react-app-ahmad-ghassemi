@@ -64,7 +64,11 @@ const Header = inject('CoreStore')(
                             <li>سوال‌‌های متداول</li>
                         </Link>
                        <li>
-                           <Button  className={'bg-[#1158A7] text-white py-2 px-5 rounded-2xl text-sm font-normal shadow-[0_2px_2px_2px_rgba(18,18,18,0.1)] hover:bg-[#3B4B95]'}>  ورود و فعال سازی </Button>
+                           <Button  className={'bg-[#1158A7] text-white py-2 px-5 rounded-2xl text-sm font-normal shadow-[0_2px_2px_2px_rgba(18,18,18,0.1)] hover:bg-[#3B4B95]'}>
+                               <span className={'button-style-font'}>
+                               ورود و فعال سازی
+                               </span>
+                           </Button>
                        </li>
 
 
