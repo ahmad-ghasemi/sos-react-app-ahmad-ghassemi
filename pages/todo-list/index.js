@@ -34,7 +34,6 @@ const TodoList = (observer((props)=>{
     }
     const updateDate = () => {
         let id = deletedValue.id
-        console.log(id)
         let index = deletedValue.index
         controller.updateItem( value,id , index , ()=> handleState() )
     }
@@ -45,7 +44,7 @@ const TodoList = (observer((props)=>{
     const deleteItem = () => {
         let data = deletedValue.item
         let index = deletedValue.index
-        controller.deleteted(data , index)
+        controller.deleteted(data , index , ()=> setDialog(false))
     }
     const setDeletedItem = (item , index)=> {
         setItem({item : item , index: index})
@@ -83,6 +82,22 @@ const TodoList = (observer((props)=>{
                 </DialogActions>
             </Dialog>
             <Card >
+                <CardActions>
+                    <Input name={'targetInput'} loading={controller.loading} className={'w-full'} placeholder={'please enter todo title'} value={value} onChange={(e)=>setValue(e.target.value)}/>
+                    {
+                        status ?
+                            <div onClick={updateDate} className={'cursor-pointer'} >
+                                <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
+                            </div> :
+                            <div onClick={sendData} className={'cursor-pointer'} >
+                                <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
+                            </div>
+                    }
+
+
+
+
+                </CardActions>
                 <CardContent>
                     {
                         controller.limitPosts.map((item , index) => {
@@ -94,7 +109,7 @@ const TodoList = (observer((props)=>{
                                     <p className={`${item.completed ? ' font-semibold line-through  ' : ''}`}>{item.title}</p>
                                 </div>
                                 <div className={'flex items-center min-w-[56px]'}>
-                                    <div onClick={()=>setDeletedItem(item . index)} className={'cursor-pointer mr-2'}>
+                                    <div onClick={()=>setDeletedItem(item , index)} className={'cursor-pointer mr-2'}>
                                         <img src={'/static/icon/delete.svg'}/>
                                     </div>
                                     <div onClick={()=>handleUpdate(item , index)} className={'cursor-pointer'}>
@@ -109,22 +124,7 @@ const TodoList = (observer((props)=>{
                 {/*    <Pagination onChange={(e ,page)=>controller.setPagination(page , 20)} page={controller.page} count={controller.posts.length/10} variant="outlined" color="secondary" />*/}
                 {/*</div>*/}
 
-                <CardActions>
-                    <Input name={'targetInput'} loading={controller.loading} className={'w-full'} placeholder={'please enter todo title'} value={value} onChange={(e)=>setValue(e.target.value)}/>
-                    {
-                        status ?
-                            <div onClick={updateDate} className={'cursor-pointer'} >
-                                <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
-                            </div> :
-                        <div onClick={sendData} className={'cursor-pointer'} >
-                        <img className={'w-full h-full'} src={'/static/icon/send.svg'}/>
-                        </div>
-                    }
 
-
-
-
-                </CardActions>
             </Card>
 
         </Box>

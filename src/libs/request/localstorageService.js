@@ -5,24 +5,24 @@ export const getUser =async () => {
   if (typeof window === undefined) {
     return null;
   }
-  const user = await localStorage.getItem('user');
-  const model = JSON.parse(user);
+  const todo = await localStorage.getItem('todo');
+  const model = JSON.parse(todo);
   // set(model,JSON.parse(user));
   return model;
 
 };
 
-export const setUser = async (user) =>  {
+export const setTodo = async (todo) =>  {
   if (typeof window === undefined) {
     return null;
   }
-  await localStorage.setItem('user', JSON.stringify(user));
+  await localStorage.setItem('todo', JSON.stringify(todo));
 };
 
-export const clearLogin = async (user) =>  {
+export const clearTodo = async (todo) =>  {
   if (typeof window === undefined) {
     return null;
   }
-  await localStorage.removeItem('user');
+  await localStorage.removeItem('todo');
 };
 

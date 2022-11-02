@@ -39,7 +39,6 @@ export default class BlogController {
                 set(cmodel, item);
                 temp.push(cmodel)
             })
-            console.log(temp)
             this.posts = temp;
             this.setPagination(1 , 20)
             this.loading = false;
@@ -57,7 +56,6 @@ export default class BlogController {
                 set(cmodel, response);
                 this.limitPosts.push(cmodel)
                 // this.limitPosts[this.limitPosts.length + 1] = cmodel
-            console.log(this.limitPosts)
             callback()
             this.loading = false;
         } catch (e) {
@@ -87,14 +85,15 @@ export default class BlogController {
             this.loading = false;
         }
     }
-    deleteted = async ( item , index) => {
+    deleteted = async ( item , index , callback) => {
         this.loading = true;
         try {
-            console.log('controller 1')
             const response = await TodoService.deleted(item.id);
-                // delete  this.limitPosts[index]
+                  this.limitPosts.splice(index , 1)
+            callback()
             this.loading = false;
         } catch (e) {
+            console.log(e)
             this.loading = false;
         }
     }

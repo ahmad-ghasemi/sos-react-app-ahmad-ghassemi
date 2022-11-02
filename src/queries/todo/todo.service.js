@@ -14,7 +14,7 @@ class TodoRequest extends CoreApi {
         return this.http.put(`${API_ENDPOINTS.LIST_TODO}/${id}` , value).then((res) => res.data);
     }
     deleted(id) {
-        return this.http.delete(`${API_ENDPOINTS.LIST_TODO}/${id}`).then((res) => res.data);
+        return this.http.delete(`${API_ENDPOINTS.LIST_TODO}/${id}`).then((res) => res.data)
     }
 }
 
